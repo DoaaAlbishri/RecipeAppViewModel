@@ -1,8 +1,6 @@
 package com.example.recipeappviewmodel
 
-import android.app.AlertDialog
-import android.app.ProgressDialog
-import android.content.DialogInterface
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -11,10 +9,9 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.recipeappviewmodel.adapter.RecyclerViewAdapter
+import com.example.recipeappviewmodel.dataBase.RecipeDetails
+import com.example.recipeappviewmodel.viewModel.MyViewModel
 
 class MainActivity2 : AppCompatActivity() {
     //private var words = listOf<RecipeDetails>()
@@ -35,10 +32,10 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     fun update(ID:Int) {
-        val dialogBuilder = AlertDialog.Builder(this)
+        val dialogBuilder = Dialog(this)
         val dialogView = layoutInflater.inflate(R.layout.update_dialog, null)
         dialogBuilder.setTitle("Alert Dialog")
-        dialogBuilder.setView(dialogView)
+        dialogBuilder.setContentView(dialogView)
         val edtitle = dialogView.findViewById<EditText>(R.id.edtitle)
         val edautor = dialogView.findViewById<EditText>(R.id.edtitle2)
         val edInt = dialogView.findViewById<EditText>(R.id.edmore2)
@@ -58,10 +55,10 @@ class MainActivity2 : AppCompatActivity() {
                         ingredients,
                         instructions)
                 myViewModel.updateRecipe(recipe)
+                dialogBuilder.dismiss()
                 Toast.makeText(applicationContext, "data updated successfully! ", Toast.LENGTH_SHORT)
                         .show()
                 println("updated item")
-
             }
         }
         dialogBuilder.show()

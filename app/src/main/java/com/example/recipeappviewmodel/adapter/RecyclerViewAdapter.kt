@@ -1,9 +1,12 @@
-package com.example.recipeappviewmodel
+package com.example.recipeappviewmodel.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recipeappviewmodel.MainActivity2
+import com.example.recipeappviewmodel.R
+import com.example.recipeappviewmodel.dataBase.RecipeDetails
 import kotlinx.android.synthetic.main.item_row.view.*
 //private var words: List<RecipeDetails>
 class RecyclerViewAdapter(private val mainActivity2: MainActivity2) : RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder>(){

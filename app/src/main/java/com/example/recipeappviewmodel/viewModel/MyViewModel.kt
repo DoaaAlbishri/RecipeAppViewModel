@@ -1,11 +1,11 @@
-package com.example.recipeappviewmodel
+package com.example.recipeappviewmodel.viewModel
 
 import android.app.Application
-import android.provider.ContactsContract
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
+import com.example.recipeappviewmodel.dataBase.RecipeDatabase
+import com.example.recipeappviewmodel.dataBase.RecipeDetails
+import com.example.recipeappviewmodel.dataBase.RecipeRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,7 +26,7 @@ class MyViewModel (applicationContext : Application): AndroidViewModel(applicati
         return recipes
     }
 
-    fun addRecipe(r:RecipeDetails){
+    fun addRecipe(r: RecipeDetails){
         CoroutineScope(Dispatchers.IO).launch {
             val recipe = RecipeDetails(r.id,
                     r.title,
@@ -36,16 +36,11 @@ class MyViewModel (applicationContext : Application): AndroidViewModel(applicati
             repository.addRecipe(recipe)
             println("added")
 //            RecipeDatabase.getInstance(applicationContext).RecipeDao().insertRecipe(
-//                RecipeDetails(r.id,
-//                    r.title,
-//                    r.author,
-//                    r.ingredients,
-//                    r.instructions)
-//            )
+//                    RecipeDetails(r.id, r.title, r.author, r.ingredients, r.instructions))
         }
     }
 
-    fun updateRecipe(r:RecipeDetails){
+    fun updateRecipe(r: RecipeDetails){
         CoroutineScope(Dispatchers.IO).launch {
             val recipe = RecipeDetails(r.id,
                     r.title,

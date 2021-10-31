@@ -1,4 +1,4 @@
-package com.example.recipeappviewmodel
+package com.example.recipeappviewmodel.dataBase
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

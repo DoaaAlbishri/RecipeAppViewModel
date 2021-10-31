@@ -7,9 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.recipeappviewmodel.dataBase.RecipeDetails
+import com.example.recipeappviewmodel.viewModel.MyViewModel
 
 class MainActivity : AppCompatActivity() {
     private val myViewModel by lazy { ViewModelProvider(this).get(MyViewModel::class.java)}

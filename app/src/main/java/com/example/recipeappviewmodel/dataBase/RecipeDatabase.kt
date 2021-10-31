@@ -1,4 +1,4 @@
-package com.example.recipeappviewmodel
+package com.example.recipeappviewmodel.dataBase
 
 import android.content.Context
 import androidx.room.Database
@@ -11,16 +11,16 @@ import androidx.room.RoomDatabase
 abstract class RecipeDatabase:RoomDatabase() {
 
     companion object{
-        var instance:RecipeDatabase?=null;
-        fun getInstance(ctx: Context):RecipeDatabase
+        var instance: RecipeDatabase?=null;
+        fun getInstance(ctx: Context): RecipeDatabase
         {
-            if(instance!=null)
+            if(instance !=null)
             {
                 return  instance as RecipeDatabase;
             }
-            instance= Room.databaseBuilder(ctx,RecipeDatabase::class.java,"details").run { allowMainThreadQueries() }.build();
+            instance = Room.databaseBuilder(ctx, RecipeDatabase::class.java,"details").run { allowMainThreadQueries() }.build();
             return instance as RecipeDatabase;
         }
     }
-    abstract fun RecipeDao():RecipeDao;
+    abstract fun RecipeDao(): RecipeDao;
 }
