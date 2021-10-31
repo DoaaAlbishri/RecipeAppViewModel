@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_row.view.*
 //private var words: List<RecipeDetails>
-class RecyclerViewAdapter() : RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder>(){
+class RecyclerViewAdapter(private val mainActivity2: MainActivity2) : RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder>(){
     class ItemViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView)
     private var words =  listOf<RecipeDetails>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -27,6 +27,12 @@ class RecyclerViewAdapter() : RecyclerView.Adapter<RecyclerViewAdapter.ItemViewH
             tvAuthor.text=word.author
             tvIngredients.text=word.ingredients
             tvInstructions.text=word.instructions
+            editBtn.setOnClickListener {
+                mainActivity2.update(word.id)
+            }
+            delBtn.setOnClickListener {
+                mainActivity2.delete(word.id)
+            }
         }
     }
     override fun getItemCount(): Int =words.size

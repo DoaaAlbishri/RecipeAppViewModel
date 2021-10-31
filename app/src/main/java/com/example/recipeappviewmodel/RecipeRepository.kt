@@ -14,4 +14,22 @@ class RecipeRepository( private val recipeDao : RecipeDao) {
                         recipe.instructions)
         )
     }
+    suspend fun updateRecipe(recipe : RecipeDetails){
+        recipeDao.updateRecipe(
+                RecipeDetails(recipe.id,
+                        recipe.title,
+                        recipe.author,
+                        recipe.ingredients,
+                        recipe.instructions)
+        )
+    }
+    suspend fun deleteRecipe(recipe : RecipeDetails){
+        recipeDao.deleteRecipe(
+                RecipeDetails(recipe.id,
+                        recipe.title,
+                        recipe.author,
+                        recipe.ingredients,
+                        recipe.instructions)
+        )
+    }
 }

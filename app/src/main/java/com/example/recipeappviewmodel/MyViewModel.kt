@@ -44,19 +44,23 @@ class MyViewModel (applicationContext : Application): AndroidViewModel(applicati
 //            )
         }
     }
-/*
+
     fun updateRecipe(r:RecipeDetails){
         CoroutineScope(Dispatchers.IO).launch {
-                val s =
-                    RecipeDatabase.getInstance(applicationContext).RecipeDao()
+            val recipe = RecipeDetails(r.id,
+                    r.title,
+                    r.author,
+                    r.ingredients,
+                    r.instructions)
+            repository.updateRecipe(recipe)
                 }
         }
 
     fun deleteRecipe(recipeID: Int){
         CoroutineScope(Dispatchers.IO).launch {
-            val del =
-           RecipeDatabase.getInstance(applicationContext).RecipeDao()
+            val recipe = RecipeDetails(recipeID, "","","","")
+            repository.deleteRecipe(recipe)
         }
     }
- */
+
 }
