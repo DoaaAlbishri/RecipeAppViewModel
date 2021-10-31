@@ -12,10 +12,14 @@ import kotlinx.coroutines.launch
 
 class MyViewModel (applicationContext : Application): AndroidViewModel(applicationContext)  {
     private val recipes: LiveData<List<RecipeDetails>>
-    val applicationContext = applicationContext
+    //val applicationContext = applicationContext
+    private val repository : RecipeRepository
 
     init {
-        recipes = RecipeDatabase.getInstance(applicationContext).RecipeDao().getRecipe()
+        //recipes = RecipeDatabase.getInstance(applicationContext).RecipeDao().getRecipe()
+        val recipeDao = RecipeDatabase.getInstance(applicationContext).RecipeDao()
+        repository = RecipeRepository(recipeDao)
+        recipes = repository.getRecipe
     }
 
     fun getRecipes(): LiveData<List<RecipeDetails>>{
@@ -24,14 +28,20 @@ class MyViewModel (applicationContext : Application): AndroidViewModel(applicati
 
     fun addRecipe(r:RecipeDetails){
         CoroutineScope(Dispatchers.IO).launch {
-            RecipeDatabase.getInstance(applicationContext).RecipeDao().insertRecipe(
-                RecipeDetails(r.id,
+            val recipe = RecipeDetails(r.id,
                     r.title,
                     r.author,
                     r.ingredients,
                     r.instructions)
-            )
+            repository.addRecipe(recipe)
             println("added")
+//            RecipeDatabase.getInstance(applicationContext).RecipeDao().insertRecipe(
+//                RecipeDetails(r.id,
+//                    r.title,
+//                    r.author,
+//                    r.ingredients,
+//                    r.instructions)
+//            )
         }
     }
 /*
